@@ -29,6 +29,7 @@
         let dx = 0;
         let dy = 0;
         let pauseGame = true;
+        let food = { x: 0, y: 0, color: "white" };
 
         function getRandomInt(max) {
           return Math.floor(Math.random() * max);
@@ -101,6 +102,12 @@
               dy = 10;
               dx = 0;
               break;
+          }
+        }
+
+        function randomFood() {
+          function randV(min, max) {
+            return Math.floor((Math.random() * (max - min) + min) / wallSize);
           }
         }
 
