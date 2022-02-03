@@ -24,6 +24,8 @@
       (function () {
         let canvas;
         let context2d;
+        let snake = [];
+        let wallSize = 10;
 
         function getRandomInt(max) {
           return Math.floor(Math.random() * max);
@@ -37,11 +39,28 @@
           context2d.fillRect(x, y, width, height);
         }
 
+        function clearCanvas() {
+          context2d.fillStyle = "black";
+          context2d.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function makeSnake(snakeLength) {
+          for (let i = 0; i < snakeLength; i++) {
+            let x = canvas.width / 2 + i * wallSize;
+            let y = canvas.height / 2;
+            snake.push();
+          }
+        }
+
         function startApp() {
           canvas = document.getElementById("canvas");
           context2d = canvas.getContext("2d");
 
           drawRectRandomColor(10, 10, 10, 10);
+
+          setInterval(function () {
+            clearCanvas();
+          }, 100);
         }
 
         window.onload = startApp();
