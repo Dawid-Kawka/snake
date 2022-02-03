@@ -48,18 +48,33 @@
           for (let i = 0; i < snakeLength; i++) {
             let x = canvas.width / 2 + i * wallSize;
             let y = canvas.height / 2;
-            snake.push();
+            snake.push({ x: x, y: y });
           }
+        }
+
+        function drawSnake() {
+          snake.forEach(function (el) {
+            context2d.strokeStyle = "red";
+            context2d.lineWidth = 5;
+            context2d.lineJoin = "bevel";
+            context2d.strokeRect(el.x, el.y, wallSize, wallSize);
+          });
+        }
+
+        function resetGame() {
+          snake = [];
+          makeSnake(5);
         }
 
         function startApp() {
           canvas = document.getElementById("canvas");
           context2d = canvas.getContext("2d");
 
-          drawRectRandomColor(10, 10, 10, 10);
+          resetGame();
 
           setInterval(function () {
             clearCanvas();
+            drawSnake();
           }, 100);
         }
 
