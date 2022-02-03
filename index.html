@@ -66,6 +66,13 @@
           makeSnake(5);
         }
 
+        function moveSnake(dx, dy) {
+          let headX = snake[0].x + dx;
+          let headY = snake[0].y + dy;
+          snake.unshift({ x: headX, y: headY });
+          snake.pop();
+        }
+
         function startApp() {
           canvas = document.getElementById("canvas");
           context2d = canvas.getContext("2d");
@@ -74,6 +81,7 @@
 
           setInterval(function () {
             clearCanvas();
+            moveSnake(0, -10);
             drawSnake();
           }, 100);
         }
