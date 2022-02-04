@@ -68,6 +68,7 @@
         function resetGame() {
           snake = [];
           makeSnake(5);
+          randomFood();
           pauseGame = true;
         }
 
@@ -107,8 +108,22 @@
 
         function randomFood() {
           function randV(min, max) {
-            return Math.floor((Math.random() * (max - min) + min) / wallSize);
+            return (
+              Math.floor((Math.random() * (max - min) + min) / wallSize) *
+              wallSize
+            );
           }
+
+          let colors = ["yellow", "silver", "white", "orange", "green", "blue"];
+          food.color = colors[Math.floor(Math.random() * colors.length)];
+
+          food.x = randV(20, canvas.width - 20);
+          food.y = randV(20, canvas.height - 20);
+        }
+
+        function drawFood() {
+          context2d.fillStyle = food.color;
+          context2d.fillRect(food.x, food.y, wallSize, wallSize);
         }
 
         function startApp() {
@@ -122,6 +137,7 @@
             clearCanvas();
             if (!pauseGame) moveSnake(dx, dy);
             drawSnake();
+            drawFood();
           }, 100);
         }
 
